@@ -1,7 +1,7 @@
 # Author: noraj
 # Author website: https://rawsec.ml
 
-FROM ruby:2.5-alpine
+FROM ruby:2.5-stretch
 
 ENV ENV_IP $ENV_IP
 

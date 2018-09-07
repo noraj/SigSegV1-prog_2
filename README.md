@@ -55,8 +55,8 @@ Add `-d` if you want to detach the container.
 
 The challenge is using the following images:
 
-- inspircd/inspircd-docker
-- ruby:2.5-alpine
+- [inspircd/inspircd-docker](https://hub.docker.com/r/inspircd/inspircd-docker/)
+- [ruby:2.5-stretch](https://hub.docker.com/_/ruby/)
 
 ## Solving
 
