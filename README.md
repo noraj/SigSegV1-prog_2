@@ -220,21 +220,24 @@ bot.start
 
 ## Flag
 
-+ **Complete flag**: `SIGSEGV1{pr073c7_y0ur_p455w0rd5_ch4n63_17_0f73n_4nd_d0n7_u53_br0k3n_4l60r17hm}`
-  - **Part 1**: `SIGSEGV1{pr073c7_y0ur_p455`
-  - **Part 2**: `w0rd5_ch4n63_17_0f73n_4nd_`
-  - **Part 3**: `d0n7_u53_br0k3n_4l60r17hm}`
++ **Complete flag**: `sigsegv{pr073c7_y0ur_p455w0rd5_ch4n63_17_0f73n_4nd_d0n7_u53_br0k3n_4l60r17hm}`
+  - **Part 1**: `sigsegv{pr073c7_y0ur_p455`
+  - **Part 2**: `w0rd5_ch4n63_17_0f73n_4nd`
+  - **Part 3**: `_d0n7_u53_br0k3n_4l60r17hm}`
 
 ```
-$ printf %s 'SIGSEGV1{pr073c7_y0ur_p455w0rd5_ch4n63_17_0f73n_4nd_d0n7_u53_br0k3n_4l60r17hm}' | md5sum 
-7acc0dbd59a977e843b5d309dd2b8d22  -
+$ printf %s 'sigsegv{pr073c7_y0ur_p455w0rd5_ch4n63_17_0f73n_4nd_d0n7_u53_br0k3n_4l60r17hm}' | md5sum
+57ed5ca6abf538324739ea4e37fe9961  -
 
-$ printf %s 'SIGSEGV1{pr073c7_y0ur_p455w0rd5_ch4n63_17_0f73n_4nd_d0n7_u53_br0k3n_4l60r17hm}' | sha1sum 
-f2c3d69a52d9d35aa6b3aff22595fadc3697ad6c  -
+$ printf %s 'sigsegv{pr073c7_y0ur_p455w0rd5_ch4n63_17_0f73n_4nd_d0n7_u53_br0k3n_4l60r17hm}' | sha1sum
+18dd7866f1839099ca33e49761cbf5178ebf9254  -
 
-$ printf %s 'SIGSEGV1{pr073c7_y0ur_p455w0rd5_ch4n63_17_0f73n_4nd_d0n7_u53_br0k3n_4l60r17hm}' | sha256sum 
-96ca83ae6c082f54efde9b425d3e111a9fedfeb7b15ccf4806b3aee7e97d52cd  -
+$ printf %s 'sigsegv{pr073c7_y0ur_p455w0rd5_ch4n63_17_0f73n_4nd_d0n7_u53_br0k3n_4l60r17hm}' | sha256sum
+a163e6a16361243a43862b772c2cc62fd99f70832b1b3f7111933a8efb239c48  -
 
-$ printf %s 'SIGSEGV1{pr073c7_y0ur_p455w0rd5_ch4n63_17_0f73n_4nd_d0n7_u53_br0k3n_4l60r17hm}' | b2sum 
-b802d3a60d0f7cb47de999cf01a11e8e8e1700cb8e3778f4d3c06a3f749822862631de3f38a88f06f7ae50735ae84d6ab8123b2b0fe9b88c6291fc89697b2a3a  -
+$ printf %s 'sigsegv{pr073c7_y0ur_p455w0rd5_ch4n63_17_0f73n_4nd_d0n7_u53_br0k3n_4l60r17hm}' | b2sum
+d1679cdc80b9d72e136b2aac8e2eb56c5945bec41c50e21fa46244cf31416a5c353f98f3f8fe604c457c86ac962d8a462d68b3ed9518679c724b8d2cfcb75458  -
+
+$ printf %s 'sigsegv{pr073c7_y0ur_p455w0rd5_ch4n63_17_0f73n_4nd_d0n7_u53_br0k3n_4l60r17hm}' | keccaksum -l
+628a0a0275e868c78eeb4c1837a0df623a0ab559de03fca718af6531b901bb2703ae05fe8b6512e077c75a6bace532213972efe0b4d11530880b0eb70e2f9c7b  -
 ```
