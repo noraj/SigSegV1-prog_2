@@ -3,6 +3,11 @@
 
 FROM ruby:2.5-stretch
 
+# drop privileges
+RUN groupadd -g 1337 appuser && \
+    useradd -r -u 1337 -g appuser appuser
+USER appuser
+
 ENV ENV_IP $ENV_IP
 
 COPY ./irc_cinch.rb /usr/src/app/irc_cinch.rb
