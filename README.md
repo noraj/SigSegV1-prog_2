@@ -10,14 +10,16 @@ Date        | Author                  | Contact               | Version | Commen
 
 Information displayed for CTF players:
 
-+ **Name of the challenge**: `Sensory Domination Droid`
-+ **Category**: `Programming`
++ **Name of the challenge** / **Nom du challenge**: `Sensory Domination Droid`
++ **Category** / **Catégorie**: `Programming` / `Programmation`
 + **Internet**: internet connection required for part 3
-+ **Difficulty**: easy
++ **Difficulty** / **Difficulté**: easy / facile
 
 ### Description
 
 Don't forget to change the IP address in the description by the one used by the docker engine.
+
+English:
 
 ```
 Hi human,
@@ -35,6 +37,26 @@ I pity you, here are some leads:
     - Channel: #chall
     - Bot name: Apox
     - Help command: !help
+```
+
+French:
+
+```
+Salut humain,
+
+Je suis Apox, un bot de Sensory Domination Droid.
+
+Tu ne trouveras jamais mon secret !
+
+Les humains sont lents, les humains ne peuvent pas avoir le flag !
+
+Vous me faites pitié, je vais vous donner des pistes:
+
+    - Adresse IP : x.x.x.x
+    - Port : 6667 (clear) / 6697 (TLS)
+    - Salon : #chall
+    - Nom du bot : Apox
+    - Commande d'aide : !help
 ```
 
 ### Hint
