@@ -8,7 +8,7 @@ require 'base64'
 require 'pwned' # gem install pwned
 
 def flag_part(num)
-  flag = 'sigsegv{pr073c7_y0ur_p455w0rd5_ch4n63_17_0f73n_4nd_d0n7_u53_br0k3n_4l60r17hm}'
+  flag = File.open('flag.txt', 'r').read()
   # Flag part size
   fps = flag.size / 3
   case num
