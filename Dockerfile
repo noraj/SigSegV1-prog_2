@@ -1,7 +1,11 @@
 # Author: noraj
 # Author website: https://rawsec.ml
 
-FROM ruby:2.5-stretch
+FROM debian:stretch-20180831
+
+RUN apt update && apt install -y ruby2.3
+# install dependencies
+RUN gem install cinch pwned
 
 # drop privileges
 RUN groupadd -g 1337 appuser && \
@@ -15,8 +19,5 @@ COPY ./10k_most_common.txt /usr/src/app/10k_most_common.txt
 COPY ./flag.txt /usr/src/app/flag.txt
 
 WORKDIR /usr/src/app
-
-# install dependencies
-RUN gem install cinch pwned
 
 CMD ruby ./irc_cinch.rb ${ENV_IP}

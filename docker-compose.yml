@@ -6,24 +6,26 @@ services:
     image: inspircd/inspircd-docker
     ports:
       - '6667:6667'
-      - '6697:6697'
-    expose:
-      - '6667'
-      - '6697'
     container_name: irc-bot-inspircd
     networks:
       irc-bot:
+    restart: always
   bot:
-    build:
-      context: .
+    build: .
+    image: irc-bot
     environment:
       ENV_IP: irc
-    container_name: irc-bot-bot
+    container_name: irc-bot
     depends_on:
       - irc
     networks:
       irc-bot:
+    user: appuser
+    restart: always
 
 networks:
   irc-bot:
-    driver: 'bridge'
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.enable_ip_masquerade: "false"
+      com.docker.network.bridge.name: "prog_2"
