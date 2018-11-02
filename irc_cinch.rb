@@ -26,7 +26,6 @@ bot = Cinch::Bot.new do
   configure do |c|
     c.server   = ARGV[0].to_s
     c.nick     = "Apox"
-    c.channels = ["#chall"]
   end
 
   # Global variables, let them empty

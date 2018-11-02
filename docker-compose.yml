@@ -5,11 +5,14 @@ services:
   irc:
     image: inspircd/inspircd-docker
     ports:
-      - '6667:6667'
+      - '6697:6697'
     container_name: irc-bot-inspircd
     networks:
       irc-bot:
+    volumes:
+      - ./ircconf:/inspircd/conf/
     restart: always
+    user: inspircd
   bot:
     build: .
     image: irc-bot
