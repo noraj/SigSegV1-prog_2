@@ -30,5 +30,5 @@ networks:
   irc-bot:
     driver: bridge
     driver_opts:
-      com.docker.network.bridge.enable_ip_masquerade: "false"
+      com.docker.network.bridge.enable_ip_masquerade: "true" # besoin internet
       com.docker.network.bridge.name: "prog_2"
