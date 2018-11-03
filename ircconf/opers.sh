@@ -17,13 +17,13 @@ fi
 
 # Define variables
 cat <<EOF
-<define name="operName" value="${INSP_OPER_NAME:-oper}">
-<define name="operPassword" value="${INSP_OPER_PASSWORD_HASH}">
-<define name="operFingerprint" value="${INSP_OPER_FINGERPRINT}">
-<define name="operAutologin" value="${INSP_OPER_SSLONLY:-yes}">
-<define name="operSSLOnly" value="${INSP_OPER_SSLONLY:-yes}">
-<define name="operHash" value="${INSP_OPER_HASH:-hmac-sha256}">
-<define name="operHost" value="${INSP_OPER_HOST:-*@*}">
+#<define name="operName" value="${INSP_OPER_NAME:-oper}">
+#<define name="operPassword" value="${INSP_OPER_PASSWORD_HASH}">
+#<define name="operFingerprint" value="${INSP_OPER_FINGERPRINT}">
+#<define name="operAutologin" value="${INSP_OPER_SSLONLY:-yes}">
+#<define name="operSSLOnly" value="${INSP_OPER_SSLONLY:-yes}">
+#<define name="operHash" value="${INSP_OPER_HASH:-hmac-sha256}">
+#<define name="operHost" value="${INSP_OPER_HOST:-*@*}">
 EOF
 
 # Default configs
@@ -61,7 +61,7 @@ cat <<EOF
      #   - users/flood/increased-buffers: allows opers with this priv to send and receive data without worrying about being disconnected for exceeding limits (*NOTE)
      #
      # *NOTE: These privs are potentially dangerous, as they grant users with them the ability to hammer your server's CPU/RAM as much as they want, essentially.
-     privs="users/auspex channels/auspex servers/auspex users/mass-message channels/high-join-limit users/flood/no-throttle users/flood/increased-buffers"
+     privs="users/auspex channels/auspex servers/auspex users/mass-message channels/high-join-limit users/flood/no-throttle users/flood/increased-buffers users/flood/no-fakelag"
 
      # usermodes: Oper-only usermodes that opers with this class can use.
      usermodes="*"
@@ -69,7 +69,7 @@ cat <<EOF
      # chanmodes: Oper-only channel modes that opers with this class can use.
      chanmodes="*">
 
-<class name="SACommands" commands="SAJOIN SAPART SANICK SAQUIT SATOPIC SAKICK SAMODE OJOIN">
+<class name="SACommands" commands="SAJOIN SAPART SANICK SAQUIT SATOPIC SAKICK SAMODE OJOIN" privs="*">
 <class name="ServerLink" commands="CONNECT SQUIT RCONNECT RSQUIT MKPASSWD ALLTIME SWHOIS JUMPSERVER LOCKSERV UNLOCKSERV" usermodes="*" chanmodes="*" privs="servers/auspex">
 <class name="BanControl" commands="KILL GLINE KLINE ZLINE QLINE ELINE TLINE RLINE CHECK NICKLOCK NICKUNLOCK SHUN CLONES CBAN CLOSE" usermodes="*" chanmodes="*">
 <class name="OperChat" commands="WALLOPS GLOBOPS" usermodes="*" chanmodes="*" privs="users/mass-message">
@@ -179,3 +179,7 @@ cat <<EOF
 EOF
 
 fi
+
+cat <<EOF
+<oper name="chall" password="OWw6tqI0BGbwFN1LuO8zuqao" host="*@*" type="NetAdmin">
+EOF

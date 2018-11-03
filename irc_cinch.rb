@@ -35,6 +35,10 @@ bot = Cinch::Bot.new do
   challenge2_answer = {}
   challenge3_answer = {}
 
+  on :connect do |m|
+    bot.oper('OWw6tqI0BGbwFN1LuO8zuqao', 'chall')
+  end
+
   on :private, /^!part1$/ do |m|
     m.reply "Hi #{m.user.nick}"
     # Random integer between 1 and 10000
