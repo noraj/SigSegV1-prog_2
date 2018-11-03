@@ -33,8 +33,7 @@ Humans are so slow, humans can't get the flag!
 I pity you, here are some leads:
 
     - IP address: x.x.x.x
-    - Port: 6667 (clear) / 6697 (TLS)
-    - Channel: #chall
+    - Port: 6697 (TLS)
     - Bot name: Apox
     - Help command: !help
 ```
@@ -53,8 +52,7 @@ Les humains sont lents, les humains ne peuvent pas avoir le flag !
 Vous me faites pitié, je vais vous donner des pistes:
 
     - Adresse IP : x.x.x.x
-    - Port : 6667 (clear) / 6697 (TLS)
-    - Salon : #chall
+    - Port : 6697 (TLS)
     - Nom du bot : Apox
     - Commande d'aide : !help
 ```
@@ -78,7 +76,7 @@ Add `-d` if you want to detach the container.
 The challenge is using the following images:
 
 - [inspircd/inspircd-docker](https://hub.docker.com/r/inspircd/inspircd-docker/)
-- [ruby:2.5-stretch](https://hub.docker.com/_/ruby/)
+- debian:stretch-20180831
 
 ## Solving
 
@@ -169,7 +167,6 @@ bot = Cinch::Bot.new do |boti|
     configure do |c|
         c.server   = "172.17.0.1"
         c.nick     = "noraj_501v3r"
-        c.channels = ["#chall"]
     end
 
     # be ready to talk to noraj_bot

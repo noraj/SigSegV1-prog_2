@@ -25,13 +25,15 @@ end
 bot = Cinch::Bot.new do
   configure do |c|
     c.server   = ARGV[0].to_s
+    c.port      = 6697
+    c.ssl.use   = true
     c.nick     = "Apox"
   end
 
   # Global variables, let them empty
-  challenge1_answer = ""
-  challenge2_answer = ""
-  challenge3_answer = ""
+  challenge1_answer = {}
+  challenge2_answer = {}
+  challenge3_answer = {}
 
   on :private, /^!part1$/ do |m|
     m.reply "Hi #{m.user.nick}"
@@ -41,18 +43,18 @@ bot = Cinch::Bot.new do
     # Pick random password
     passwd = IO.readlines('10k_most_common.txt')[rand_int].chomp
     #Save clear password in gobal variable
-    challenge1_answer = passwd
+    challenge1_answer[m.user.user] = passwd
     # get hex value of the md5 hash of the password
     hash = Digest::MD5.hexdigest passwd
     # Insert a colon `:` every to char to get it more difficult to copy/paste manually
     hash = hash.scan(/.{1,2}/).join(':')
     m.reply "Crack this md5 hash: #{hash}, you have 3 seconds to answer"
     Timer(3, {shots: 1}) { m.reply "Time's up!"
-                            challenge1_answer = "" }
+                            challenge1_answer[m.user.user] = "" }
   end
 
   on :private, /^!part1 -ans (.*)/ do |m, ans|
-    if ans == challenge1_answer and not ans.empty?
+    if ans == challenge1_answer[m.user.user] and not ans.empty?
       m.reply 'Part 1 of the Flag: ' + flag_part(1)
     else
       m.reply 'Too late or bad answer'
@@ -67,7 +69,7 @@ bot = Cinch::Bot.new do
     rand_int = prng.rand(1..10000)
     passwd = IO.readlines('10k_most_common.txt')[rand_int].chomp
     # Save clear password in gobal variable
-    challenge2_answer = passwd
+    challenge2_answer[m.user.user] = passwd
     # init cipher
     cipher = OpenSSL::Cipher.new('camellia256')
     cipher.encrypt
@@ -80,11 +82,11 @@ bot = Cinch::Bot.new do
     m.reply "iv: #{Base64.encode64(iv)}"
     m.reply "encrypted: #{Base64.encode64(encrypted)}"
     Timer(3, {shots: 1}) { m.reply "Time's up!"
-                            challenge2_answer = "" }
+                            challenge2_answer[m.user.user] = "" }
   end
 
   on :private, /^!part2 -ans (.*)/ do |m, ans|
-    if ans == challenge2_answer and not ans.empty?
+    if ans == challenge2_answer[m.user.user] and not ans.empty?
       m.reply 'Part 2 of the Flag: ' + flag_part(2)
     else
       m.reply 'Too late or bad answer'
@@ -101,13 +103,13 @@ bot = Cinch::Bot.new do
     # Check password pwnage count
     passwdcheck = Pwned::Password.new(passwd, { 'User-Agent' => 'SIGSEGV1-CTF-irc-challenge-password-pwn-count' })
     # Save password pwnage count in gobal variable
-    challenge3_answer = passwdcheck.pwned_count.to_s
+    challenge3_answer[m.user.user] = passwdcheck.pwned_count.to_s
     Timer(3, {shots: 1}) { m.reply "Time's up!"
-                            challenge3_answer = "" }
+                            challenge3_answer[m.user.user] = "" }
   end
 
   on :private, /^!part3 -ans ([0-9]*)/ do |m, ans|
-    if ans == challenge3_answer and not ans.empty?
+    if ans == challenge3_answer[m.user.user] and not ans.empty?
       m.reply 'Part 3 of the Flag: ' + flag_part(3)
     else
       m.reply 'Too late or bad answer'
