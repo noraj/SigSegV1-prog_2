@@ -61,7 +61,7 @@ cat <<EOF
      #   - users/flood/increased-buffers: allows opers with this priv to send and receive data without worrying about being disconnected for exceeding limits (*NOTE)
      #
      # *NOTE: These privs are potentially dangerous, as they grant users with them the ability to hammer your server's CPU/RAM as much as they want, essentially.
-     privs="users/auspex channels/auspex servers/auspex users/mass-message channels/high-join-limit users/flood/no-throttle users/flood/increased-buffers users/flood/no-fakelag"
+     privs="users/auspex channels/auspex servers/auspex users/mass-message channels/high-join-limit users/flood/no-throttle users/flood/increased-buffers"
 
      # usermodes: Oper-only usermodes that opers with this class can use.
      usermodes="*"
@@ -74,7 +74,7 @@ cat <<EOF
 <class name="BanControl" commands="KILL GLINE KLINE ZLINE QLINE ELINE TLINE RLINE CHECK NICKLOCK NICKUNLOCK SHUN CLONES CBAN CLOSE" usermodes="*" chanmodes="*">
 <class name="OperChat" commands="WALLOPS GLOBOPS" usermodes="*" chanmodes="*" privs="users/mass-message">
 <class name="HostCloak" commands="SETHOST SETIDENT SETIDLE CHGNAME CHGHOST CHGIDENT" usermodes="*" chanmodes="*" privs="users/auspex">
-
+<class name="BotPerm" commands="WALLOPS GLOBOPS" usermodes="*" chanmodes="*" privs="users/flood/no-fakelag users/flood/no-throttle users/flood/increased-buffers">
 
 #-#-#-#-#-#-#-#-#-#-#-#-  OPERATOR COMPOSITION   -#-#-#-#-#-#-#-#-#-#-#
 #                                                                     #
@@ -99,6 +99,7 @@ cat <<EOF
     # when they oper up. Used for snomasks and other things.
     # Requires that m_opermodes.so be loaded.
     modes="+s +cCqQ">
+<type name="Bot" classes="BotPerm">
 
 #-#-#-#-#-#-#-#-#-#-#-  OPERATOR CONFIGURATION   -#-#-#-#-#-#-#-#-#-#-#
 #                                                                     #
@@ -181,5 +182,5 @@ EOF
 fi
 
 cat <<EOF
-<oper name="chall" password="OWw6tqI0BGbwFN1LuO8zuqao" host="*@*" type="NetAdmin">
+<oper name="chall" password="OWw6tqI0BGbwFN1LuO8zuqao" host="*@*" type="Bot">
 EOF

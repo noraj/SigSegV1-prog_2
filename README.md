@@ -35,7 +35,20 @@ I pity you, here are some leads:
     - IP address: x.x.x.x
     - Port: 6697 (TLS)
     - Bot name: Apox
-    - Help command: !help
+
+List of available commands:
+
+~~~
+!credit => Display challenge credit
+!part1 => Launch part 1 of the challenge
+!part1 -ans your_answer => Send your answer for part 1 of the challenge
+!part2 => Launch part 2 of the challenge
+!part2 -ans your_answer => Send your answer for part 2 of the challenge
+!part3 => Launch part 3 of the challenge
+!part3 -ans your_answer => Send your answer for part 3 of the challenge
+~~~
+
+PS: the 5 second delay before the bot reply to your commands is due to an anti-flood mechanism
 ```
 
 French:
@@ -54,7 +67,20 @@ Vous me faites pitié, je vais vous donner des pistes:
     - Adresse IP : x.x.x.x
     - Port : 6697 (TLS)
     - Nom du bot : Apox
-    - Commande d'aide : !help
+
+Liste des commandes disponibles:
+
+~~~
+!credit => Affiche l'à propos du challenge
+!part1 => Lancer la partie 1 du challenge
+!part1 -ans your_answer => Envoyer votre réponse pour la partie 1 du challenge
+!part2 => Lancer la partie 2 du challenge
+!part2 -ans your_answer => Envoyer votre réponse pour la partie 2 du challenge
+!part3 => Lancer la partie 3 du challenge
+!part3 -ans your_answer => Envoyer votre réponse pour la partie 3 du challenge
+~~~
+
+PS: le délai de 5 secondes avant que le bot ne réponde à vos commandes est du à un mécanisme anti-flood
 ```
 
 ### Hint

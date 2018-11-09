@@ -44,28 +44,14 @@ bot = Cinch::Bot.new do |boti|
     end
 
     # solving challenge part 2
-    # Global variables, let them empty
-    c2_key = ""
-    c2_iv = ""
-
-    on :private, /^key: ((?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?)/ do |m, k|
-        c2_key = Base64.decode64(k)
-    end
-
-    on :private, /^iv: ((?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?)/ do |m, i|
-        c2_iv = Base64.decode64(i)
-    end
-
-    on :private, /^encrypted: ((?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?)/ do |m, e|
+    on :private, /^Decipher this, you have [0-9]+ seconds to answer. cipher: camellia256, key: ((?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?), iv: ((?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?), encrypted: ((?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?)$/ do |m, k, i, e|
         c2_encrypted = Base64.decode64(e)
         # init cipher
         decipher = OpenSSL::Cipher.new('camellia256')
         decipher.decrypt
         # decipher password
-        sleep(0.5) if c2_key == ""
-        decipher.key = c2_key
-        sleep(0.5) if c2_iv == ""
-        decipher.iv = c2_iv
+        decipher.key = Base64.decode64(k)
+        decipher.iv = Base64.decode64(i)
         passwd = decipher.update(c2_encrypted) + decipher.final
         m.reply "!part2 -ans #{passwd}"
     end
