@@ -18,7 +18,7 @@ class Chall(pydle.Client):
         print('-> [Apox] !part1')
         self.message('Apox', '!part1')
         self.flag = ''
-    
+    # Decipher this, you have 3 seconds to answer. cipher: camellia256, key: nKEDtu0mrWc2G+6uEljgbF0gU/BPfDKp+F7DFzzb8Ds=, iv: I3nT1RfznZtRuPymoOdtkg==, encrypted: LySP5Iy0pf+npss0c3FUyA==
     def on_private_message(self, by, message):
         print('<- [%s] %s' % (by, message))
         # part1
@@ -39,16 +39,13 @@ class Chall(pydle.Client):
             m = re.findall('Part 1 of the Flag: (.*)', message)
             self.flag += m[0]
             print('[*] flag: %s' % self.flag)
+            print('-> [Apox] !part2')
             self.message(by, '!part2')
-        elif message.startswith('key: '):
-            m = re.findall('key: (.*)', message)
-            self.key = base64.b64decode(m[0].strip().rstrip())
-        elif message.startswith('iv: '):
-            m = re.findall('iv: (.*)', message)
-            self.iv = base64.b64decode(m[0].strip().rstrip())
-        elif message.startswith('encrypted: '):
-            m = re.findall('encrypted: (.*)', message)
-            self.encrypted = base64.b64decode(m[0].strip().rstrip())
+        elif message.startswith('Decipher this,'):
+            m = re.findall('Decipher this, you have 3 seconds to answer. cipher: camellia256, key: ([^,]+), iv: ([^,]+), encrypted: (.*)', message)
+            self.key = base64.b64decode(m[0][0].strip().rstrip())
+            self.iv = base64.b64decode(m[0][1].strip().rstrip())
+            self.encrypted = base64.b64decode(m[0][2].strip().rstrip())
             c = camellia.CamelliaCipher(key=bytes(self.key), IV=bytes(self.iv), mode=camellia.MODE_CBC)
             plain = c.decrypt(self.encrypted)
             res = ''.join([chr(c) for c in plain if chr(c) in string.digits + string.ascii_letters])
@@ -58,6 +55,7 @@ class Chall(pydle.Client):
             m = re.findall('Part 2 of the Flag: (.*)', message)
             self.flag += m[0].strip().rstrip()
             print('[*] flag: %s' % self.flag)
+            print('-> [Apox] !part3')
             self.message(by, '!part3')
         elif message.startswith('Give me the number of times this password: '):
             m = re.findall('Give me the number of times this password: ([^,]+)', message)
