@@ -8,7 +8,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN chmod o-x /usr/bin/wall
 RUN chmod o-rx /var/log /run/*
 RUN sed -i 's/664/660/g' /var/lib/dpkg/info/base-files.postinst
-RUN chmod 773 /tmp
+#RUN chmod 773 /tmp
 
 # date
 RUN ln -fs /usr/share/zoneinfo/Europe/Paris /etc/localtime
